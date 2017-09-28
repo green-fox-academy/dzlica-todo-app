@@ -1,0 +1,8 @@
+.idea/
+out
+*.xml
+*.iml
+# gf software files
+.gf.json
+
+.DS_Store
