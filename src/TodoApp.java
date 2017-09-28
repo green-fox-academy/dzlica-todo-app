@@ -6,7 +6,6 @@ import java.util.List;
 public class TodoApp {
     public static void main(String [] args) {
 
-
         try {
             Path myPath = Paths.get( "/Users/lica/GreenFox/dzlica-todo-app/printusage.txt");
             List<String> lines = Files.readAllLines(myPath);
@@ -19,13 +18,28 @@ public class TodoApp {
             System.out.println("Unable to read the file!");
         }
         System.out.println("\n");
-        TodoLista elsoTodo = new TodoLista();
+        if (args.length > 0) {
+            TodoLista elsoTodo = new TodoLista(args);
+            elsoTodo.listTask();
+            elsoTodo.newTask();
+            elsoTodo.removeTask();
+            elsoTodo.argumentError();
+            elsoTodo.checkTask();
+        } else {
+            TodoLista elsoTodo = new TodoLista();
+            elsoTodo.listTask();
+            elsoTodo.newTask();
+            elsoTodo.removeTask();
+            elsoTodo.argumentError();
+            elsoTodo.checkTask();
+        }
 
-        elsoTodo.listTask();
-        elsoTodo.newTask();
-        elsoTodo.removeTask();
-        elsoTodo.argumentError();
-        elsoTodo.checkTask();
+//        TodoLista elsoTodo = new TodoLista();
+//        elsoTodo.listTask();
+//        elsoTodo.newTask();
+//        elsoTodo.removeTask();
+//        elsoTodo.argumentError();
+//        elsoTodo.checkTask();
 
     }
 }
