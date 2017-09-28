@@ -24,6 +24,7 @@ public class TodoApp {
         elsoTodo.listTask();
         elsoTodo.newTask();
         elsoTodo.emptyList();
+        elsoTodo.removeTask();
 
     }
 }

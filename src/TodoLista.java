@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,6 +38,9 @@ public class TodoLista {
     }
 
     public void newTask() {
+        if (this.input.endsWith("-a")) {
+            System.out.println("Unable to add: no task provided");
+        }
         if (this.input.startsWith("-a")) {
             try {
                 Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
@@ -45,11 +49,13 @@ public class TodoLista {
                 Files.write(myPath, lines);
 
             } catch (Exception e) {
-                System.out.println("Unable to read the file!");
+                //System.out.println("Unable to read the file!");
             }
         }
 
+
     }
+
 
     public void emptyList() {
         if (input.endsWith("l")) {
@@ -66,6 +72,21 @@ public class TodoLista {
         }
 
 
+    }
+
+    public void removeTask() {
+        try {
+            Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
+            List<String> lines = Files.readAllLines(myPath);
+            if (1 <= lines.size() && input.startsWith("-r")) {
+                String toNumber = input.substring(3);
+                int result = Integer.parseInt(toNumber);
+                lines.remove(result - 1);
+                Files.write(myPath, lines);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
