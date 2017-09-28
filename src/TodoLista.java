@@ -11,6 +11,7 @@ public class TodoLista {
     String input;
     ArrayList<String> lines;
 
+
     public TodoLista() {
 
         this.input = myScanner.nextLine();
@@ -20,15 +21,17 @@ public class TodoLista {
 
     public void listTask() {
 
-        if (this.input.endsWith("l")) {
+        if (this.input.endsWith("-l")) {
             try {
                 Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
                 List<String> lines = Files.readAllLines(myPath);
-                int count = 0;
+                int count = 1;
                 for (int i = 0; i < lines.size(); i++) {
+                    if ((lines.get(i).substring(1).equals("+"))) {
+                        System.out.println(count + " - [x] " + lines.get(i));
+                    }
+                    else System.out.println(count + " - [ ] " + lines.get(i));
                     count++;
-                    System.out.println(count + " - " + lines.get(i));
-
                 }
 
             } catch (Exception e) {
@@ -45,7 +48,7 @@ public class TodoLista {
             try {
                 Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
                 List<String> lines = Files.readAllLines(myPath);
-                lines.add(this.input.substring(3));
+                lines.add("-" + this.input.substring(3));
                 Files.write(myPath, lines);
 
             } catch (Exception e) {
@@ -58,7 +61,7 @@ public class TodoLista {
 
 
     public void emptyList() {
-        if (input.endsWith("l")) {
+        if (this.input.endsWith("l")) {
             try {
                 Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
                 List<String> lines = Files.readAllLines(myPath);
@@ -78,11 +81,11 @@ public class TodoLista {
         try {
             Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
             List<String> lines = Files.readAllLines(myPath);
-            if (input.endsWith("-r")) {
+            if (this.input.endsWith("-r")) {
                 System.out.println("Unable to remove: no index provided");
             }
-            if (1 <= lines.size() && input.startsWith("-r")) {
-                String toNumber = input.substring(3);
+            if (1 <= lines.size() && this.input.startsWith("-r")) {
+                String toNumber = this.input.substring(3);
                 try {
                     int result = Integer.parseInt(toNumber);
                     if (result > lines.size()) {
@@ -101,8 +104,25 @@ public class TodoLista {
             e.printStackTrace();
         }
     }
+
+    public void checkTask() {
+        try {
+            Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
+            List<String> lines = Files.readAllLines(myPath);
+            if (1 <= lines.size() && this.input.startsWith("-c")) {
+                String toNumber = this.input.substring(3);
+                int result = Integer.parseInt(toNumber);
+                lines.set(result, "+" + lines.get(result).substring(1));
+                }
+
+        } catch(Exception e){
+
+             }
+        }
+
+
     public void argumentError() {
-        if (!input.contains("-r") || !input.contains("-a") || !input.contains("-l") || !input.contains("-c")) {
+        if (!(input.contains("-r") || input.contains("-a") || input.contains("-l") || input.contains("-c"))) {
             System.out.println("Unsupported argument");
             try {
                 Path myPath = Paths.get( "/Users/lica/GreenFox/dzlica-todo-app/printusage.txt");
@@ -116,5 +136,7 @@ public class TodoLista {
             System.out.println("\n");
         }
     }
+
+
 }
 
