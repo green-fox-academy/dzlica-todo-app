@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TodoApp {
     public static void main(String [] args) {
-        TodoLista elsoTodo = new TodoLista();
+
 
         try {
             Path myPath = Paths.get( "/Users/lica/GreenFox/dzlica-todo-app/printusage.txt");
@@ -19,6 +19,7 @@ public class TodoApp {
         } catch (Exception e) {
             System.out.println("Unable to read the file!");
         }
+        TodoLista elsoTodo = new TodoLista();
 
         elsoTodo.listTask();
         elsoTodo.newTask();
