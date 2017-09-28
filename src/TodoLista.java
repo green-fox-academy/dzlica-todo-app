@@ -83,12 +83,18 @@ public class TodoLista {
             }
             if (1 <= lines.size() && input.startsWith("-r")) {
                 String toNumber = input.substring(3);
-                int result = Integer.parseInt(toNumber);
-                if (result > lines.size()) {
-                    System.out.println("Unable to remove: index is out of bound");
+                try {
+                    int result = Integer.parseInt(toNumber);
+                    if (result > lines.size()) {
+                        System.out.println("Unable to remove: index is out of bound");
+                    }
+                    else lines.remove(result - 1);
+                    Files.write(myPath, lines);
                 }
-                else lines.remove(result - 1);
-                Files.write(myPath, lines);
+                catch (Exception e){
+                    System.out.println("Unable to remove: index is not a number");
+                }
+
             }
 
         } catch (IOException e) {
