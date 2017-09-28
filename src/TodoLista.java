@@ -78,12 +78,19 @@ public class TodoLista {
         try {
             Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
             List<String> lines = Files.readAllLines(myPath);
+            if (input.endsWith("-r")) {
+                System.out.println("Unable to remove: no index provided");
+            }
             if (1 <= lines.size() && input.startsWith("-r")) {
                 String toNumber = input.substring(3);
                 int result = Integer.parseInt(toNumber);
-                lines.remove(result - 1);
+                if (result > lines.size()) {
+                    System.out.println("Unable to remove: index is out of bound");
+                }
+                else lines.remove(result - 1);
                 Files.write(myPath, lines);
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
