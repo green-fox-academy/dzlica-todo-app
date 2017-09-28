@@ -25,6 +25,7 @@ public class TodoApp {
         elsoTodo.newTask();
         elsoTodo.emptyList();
         elsoTodo.removeTask();
+        elsoTodo.argumentError();
 
     }
 }

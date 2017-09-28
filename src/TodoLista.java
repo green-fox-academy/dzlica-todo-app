@@ -101,5 +101,20 @@ public class TodoLista {
             e.printStackTrace();
         }
     }
+    public void argumentError() {
+        if (!input.contains("-r") || !input.contains("-a") || !input.contains("-l") || !input.contains("-c")) {
+            System.out.println("Unsupported argument");
+            try {
+                Path myPath = Paths.get( "/Users/lica/GreenFox/dzlica-todo-app/printusage.txt");
+                List<String> lines = Files.readAllLines(myPath);
+                for (int i = 0; i < lines.size(); i++) {
+                    System.out.println(lines.get(i));
+                }
+            } catch (Exception e) {
+                System.out.println("Unable to read the file!");
+            }
+            System.out.println("\n");
+        }
+    }
 }
 
