@@ -11,6 +11,7 @@ public class TodoLista {
     ArrayList<String> lines;
 
     public TodoLista() {
+
         this.input = myScanner.nextLine();
         this.lines = new ArrayList<>();
 
@@ -50,22 +51,21 @@ public class TodoLista {
 
     }
 
-//    public void emptyList() {
-//        Scanner myScanner = new Scanner(System.in);
-//        String input = myScanner.nextLine();
-//        if (input.endsWith("l")) {
-//            try {
-//                Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
-//                List<String> lines = Files.readAllLines(myPath);
-//                if (lines == null) {
-//                    System.out.println("No todos for today");
-//                }
-//
-//            } catch (Exception e) {
-//                System.out.println("Unable to read the file!");
-//            }
-//        }
+    public void emptyList() {
+        if (input.endsWith("l")) {
+            try {
+                Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
+                List<String> lines = Files.readAllLines(myPath);
+                if (lines.size() == 0) {
+                    System.out.println("No todos for today");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Unable to read the file!");
+            }
+        }
 
 
     }
+}
 

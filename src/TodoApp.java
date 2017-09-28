@@ -14,15 +14,16 @@ public class TodoApp {
                 System.out.println(lines.get(i));
 
             }
-            System.out.println("\n");
 
         } catch (Exception e) {
             System.out.println("Unable to read the file!");
         }
+        System.out.println("\n");
         TodoLista elsoTodo = new TodoLista();
 
         elsoTodo.listTask();
         elsoTodo.newTask();
+        elsoTodo.emptyList();
 
     }
 }
