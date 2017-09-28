@@ -25,12 +25,16 @@ public class TodoLista {
             try {
                 Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
                 List<String> lines = Files.readAllLines(myPath);
+                if (lines.size() == 0) {
+                    System.out.println("No todos for today");
+                    return;
+                }
                 int count = 1;
                 for (int i = 0; i < lines.size(); i++) {
-                    if ((lines.get(i).substring(1).equals("+"))) {
-                        System.out.println(count + " - [x] " + lines.get(i));
+                    if ((lines.get(i).charAt(0) == '+')) {
+                        System.out.println(count + " - [x] " + lines.get(i).substring(1));
                     }
-                    else System.out.println(count + " - [ ] " + lines.get(i));
+                    else System.out.println(count + " - [ ] " + lines.get(i).substring(1));
                     count++;
                 }
 
@@ -52,30 +56,13 @@ public class TodoLista {
                 Files.write(myPath, lines);
 
             } catch (Exception e) {
-                //System.out.println("Unable to read the file!");
-            }
-        }
-
-
-    }
-
-
-    public void emptyList() {
-        if (this.input.endsWith("l")) {
-            try {
-                Path myPath = Paths.get("/Users/lica/GreenFox/dzlica-todo-app/todolist.txt");
-                List<String> lines = Files.readAllLines(myPath);
-                if (lines.size() == 0) {
-                    System.out.println("No todos for today");
-                }
-
-            } catch (Exception e) {
                 System.out.println("Unable to read the file!");
             }
         }
 
 
     }
+
 
     public void removeTask() {
         try {
@@ -94,7 +81,7 @@ public class TodoLista {
                     else lines.remove(result - 1);
                     Files.write(myPath, lines);
                 }
-                catch (Exception e){
+                catch (NumberFormatException e){
                     System.out.println("Unable to remove: index is not a number");
                 }
 
@@ -113,7 +100,8 @@ public class TodoLista {
                 String toNumber = this.input.substring(3);
                 int result = Integer.parseInt(toNumber);
                 lines.set(result, "+" + lines.get(result).substring(1));
-                }
+                Files.write(myPath, lines);
+            }
 
         } catch(Exception e){
 
