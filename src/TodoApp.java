@@ -12,13 +12,16 @@ public class TodoApp {
             List<String> lines = Files.readAllLines(myPath);
             for (int i = 0; i < lines.size(); i++) {
                 System.out.println(lines.get(i));
+
             }
+            System.out.println("\n");
 
         } catch (Exception e) {
             System.out.println("Unable to read the file!");
         }
 
         elsoTodo.listTask();
+        elsoTodo.newTask();
 
     }
 }
